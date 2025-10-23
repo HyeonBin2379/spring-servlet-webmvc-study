@@ -51,12 +51,11 @@ public class TodoDAOTests {
     @Test
     public void testUpdateOne() throws Exception {
         TodoVO vo = TodoVO.builder()
-                .tno(2L)
+                .tno(1L)
                 .title("Update Title todo...")
                 .dueDate(LocalDate.now())
                 .finished(true)
                 .build();
         todoDAO.updateOne(vo);
-        System.out.println(todoDAO.selectOne(2L));
     }
 }
