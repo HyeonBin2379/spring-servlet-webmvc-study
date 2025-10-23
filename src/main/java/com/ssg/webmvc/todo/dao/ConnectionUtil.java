@@ -17,7 +17,7 @@ public enum ConnectionUtil {
         HikariConfig config = new HikariConfig();
         // MySQL 드라이버 로드 및 연결할 DB 지정
         config.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        config.setJdbcUrl("jdbc:mysql://localhost:3306/member_servlet_db?serverTimezone=Asia/Seoul&charEncoding=UTF-8");
+        config.setJdbcUrl("jdbc:mysql://localhost:3306/sqldb?serverTimezone=Asia/Seoul&charEncoding=UTF-8");
         config.setUsername("root");
         config.setPassword("mysql1234");
 
