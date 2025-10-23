@@ -12,5 +12,6 @@
 </head>
 <body>
   <h1>Todo List Page</h1>
+  ${list}
 </body>
 </html>
