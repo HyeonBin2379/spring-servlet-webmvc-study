@@ -1,6 +1,8 @@
 package com.ssg.webmvc.todo;
 
-import javax.servlet.RequestDispatcher;
+import com.ssg.webmvc.todo.dto.TodoDTO;
+import com.ssg.webmvc.todo.service.TodoService;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,8 +15,13 @@ public class TodoReadController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("/todo/read doGet() 호출: 회원 정보 조회 화면 출력");
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/todo/read.jsp");
-        dispatcher.forward(req, resp);
+        System.out.println("/todo/read doGet() 호출: 할 일 조회");
+
+        // get 요청을 통해 전송받은 tno에 해당하는 todo를 조회 : todo/read?tno=123
+        Long tno = Long.parseLong(req.getParameter("tno"));
+        TodoDTO dto = TodoService.INSTANCE.get(tno);
+
+        req.setAttribute("dto", dto);
+        req.getRequestDispatcher("/WEB-INF/todo/read.jsp").forward(req, resp);
     }
 }

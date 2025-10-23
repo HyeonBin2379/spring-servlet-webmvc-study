@@ -2,6 +2,7 @@ package com.ssg.webmvc.todo.service;
 
 import com.ssg.webmvc.todo.dto.TodoDTO;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -36,5 +37,14 @@ public enum TodoService {
                     return dto;
                 })
                 .collect(Collectors.toList());
+    }
+
+    public TodoDTO get(Long tno) {
+        TodoDTO dto = new TodoDTO();
+        dto.setTno(tno);
+        dto.setTitle("Sample Todo");
+        dto.setDueDate(LocalDateTime.now());
+        dto.setFinished(false);
+        return dto;
     }
 }

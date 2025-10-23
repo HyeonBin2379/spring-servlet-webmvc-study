@@ -19,7 +19,6 @@ public class TodoListController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("/todo/list doGet() 호출: 할 일 목록 조회");
 
-
         List<TodoDTO> todoDTOList = TodoService.INSTANCE.getList();
 //        HttpSession session = req.getSession();
 //        session.setAttribute("list", todoDTOList);
