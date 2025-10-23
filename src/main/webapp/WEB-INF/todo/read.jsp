@@ -11,7 +11,10 @@
     <title>Todo Read Page</title>
 </head>
 <body>
-    <h1>Todo Read Page</h1>
-    ${dto.tno} ${dto.title} ${dto.dueDate} ${dto.finished}
+    <h1>Read Page</h1>
+    ${dto.tno} 
+    ${dto.title}
+    ${dto.dueDate}
+    ${dto.finished}
 </body>
 </html>
