@@ -37,9 +37,11 @@ dependencies {
     testCompileOnly 'org.projectlombok:lombok:1.18.30'
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.30'
 
-//    로그 출력용
+//    로그 출력용 라이브러리
     implementation 'org.apache.logging.log4j:log4j-api:2.22.1'
     implementation 'org.apache.logging.log4j:log4j-core:2.22.1'
+
+//    이 라이브러리를 추가해야 HikariCP에 내장된 로그 설정 대신 사용자가 설정한 로그 메시지를 출력
     implementation 'org.apache.logging.log4j:log4j-slf4j-impl:2.22.1'
 
 //    JSP의 JSTL 라이브러리

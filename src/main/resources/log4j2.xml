@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <!-- 어펜더: 콘솔창 또는 파일에 출력할 로그 메시지의 형식을 지정  -->
+    <Appenders>
+        <!-- 콘솔창에서 system.out의 메서드가 실행될 때마다 로그 메시지를 출력 -->
+        <Console name="CONSOLE" target="SYSTEM_OUT">
+            <!-- 로그 출력 시간, 로그 발생 쓰레드, 로그 레벨(왼쪽정렬), 로그 메시지 발생 클래스, 실제 로그 메시지 순 출력-->
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+    </Appenders>
+
+    <!--  로그 레벨별로 로그 메시지를 출력할 방법과 사용할 어펜더를 지정  -->
+    <Loggers>
+        <Root level="DEBUG">
+            <AppenderRef ref="CONSOLE"/>
+        </Root>
+    </Loggers>
+</Configuration>

@@ -4,6 +4,7 @@ import com.ssg.webmvc.todo.dao.TodoDAO;
 import com.ssg.webmvc.todo.domain.TodoVO;
 import com.ssg.webmvc.todo.dto.TodoDTO;
 import com.ssg.webmvc.todo.util.MapperUtil;
+import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
 
 import java.time.LocalDate;
@@ -15,6 +16,7 @@ import java.util.stream.LongStream;
     enum 타입 클래스 사용의 장점
     - 생성할 객체의 개수를 제한할 수 있음 -> 객체를 1개만 생성해서 사용 가능(-> 싱글톤 패턴)
  */
+@Log4j2
 public enum TodoService {
 
     /*
@@ -42,20 +44,19 @@ public enum TodoService {
     public void register(TodoDTO todoDTO) throws Exception {
         // 리플렉션 기법 적용 -> TodoDTO 객체를 TodoVO로 변환
         TodoVO todoVO = modelMapper.map(todoDTO, TodoVO.class);
-        System.out.println(todoVO);     // Log4j2를 사용하여 로그를 출력하도록 변경 예정
+//        System.out.println(todoVO);     // Log4j2를 사용하여 로그를 출력하도록 변경 예정
+        log.info(todoVO);   // log4j2를 사용하여 로그 메시지를 출력
         dao.insert(todoVO);
     }
 
-    // 10개의 todoDTO를 반환
-    public List<TodoDTO> getList() {
-        return LongStream.range(0, 10)
-                .mapToObj(tno -> {
-                    TodoDTO dto = new TodoDTO();
-                    dto.setTno(tno);
-                    dto.setTitle("Todo..title" + tno);
-                    dto.setDueDate(LocalDate.now());
-                    return dto;
-                })
+    public List<TodoDTO> listAll() throws Exception{
+        List<TodoVO> voList = dao.selectAll();
+        log.info("voList---------------------");
+        log.info(voList);
+
+        // List<TodoVO>를 List<TodoDTO>로 변경한 후 반환
+        return voList.stream()
+                .map(todoVO -> modelMapper.map(todoVO, TodoDTO.class))
                 .collect(Collectors.toList());
     }
 
@@ -67,6 +68,4 @@ public enum TodoService {
         dto.setFinished(false);
         return dto;
     }
-
-
 }
