@@ -37,4 +37,20 @@ public class TodoServiceTests {
         TodoDTO dto = todoService.get(4L);
         log.info(dto);
     }
+
+    @Test
+    public void testUpdate() throws Exception {
+        TodoDTO todoDTO = TodoDTO.builder()
+                .tno(1L)
+                .title("Todo DTO Update...")
+                .dueDate(LocalDate.now())
+                .finished(true)
+                .build();
+        todoService.update(todoDTO);
+    }
+
+    @Test
+    public void testDelete() throws Exception {
+        todoService.delete(4L);
+    }
 }
