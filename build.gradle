@@ -48,6 +48,9 @@ dependencies {
 //    DB 연동용 커넥션풀 제공 라이브러리
     implementation 'com.zaxxer:HikariCP:5.0.1'
 
+//  ModelMapper 라이브러리: getter, setter를 사용하여 다른 객체의 정보를 복사하기 위한 기능을 제공
+    implementation 'org.modelmapper:modelmapper:3.0.0'
+
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
 }

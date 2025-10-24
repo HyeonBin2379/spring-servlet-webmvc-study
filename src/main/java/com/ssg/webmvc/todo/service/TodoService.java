@@ -1,9 +1,12 @@
 package com.ssg.webmvc.todo.service;
 
+import com.ssg.webmvc.todo.dao.TodoDAO;
+import com.ssg.webmvc.todo.domain.TodoVO;
 import com.ssg.webmvc.todo.dto.TodoDTO;
+import com.ssg.webmvc.todo.util.MapperUtil;
+import org.modelmapper.ModelMapper;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.LongStream;
@@ -22,8 +25,25 @@ public enum TodoService {
     */
     INSTANCE;
 
-    public void register(TodoDTO todoDTO) {
+    private final TodoDAO dao;
+    private final ModelMapper modelMapper;
 
+    TodoService() {
+        // IoC를 수행할 컨테이너가 없으므로, 사용자가 직접 필요한 객체를 주입하는 작업을 처리
+        this.dao = new TodoDAO();
+        this.modelMapper = MapperUtil.INSTANCE.get();
+    }
+
+    /**
+     * 컨트롤러로부터 TodoDTO 파라미터를 받아서 ModelMapper를 통해 todoVO 객체로 변환한 후
+     * dao.insert()의 인자로 TodoVO 객체를 전달하여 등록 처리를 요청
+     * @param todoDTO : 컨트롤러로부터 전달받은 todo 정보가 저장된 객체
+     */
+    public void register(TodoDTO todoDTO) throws Exception {
+        // 리플렉션 기법 적용 -> TodoDTO 객체를 TodoVO로 변환
+        TodoVO todoVO = modelMapper.map(todoDTO, TodoVO.class);
+        System.out.println(todoVO);     // Log4j2를 사용하여 로그를 출력하도록 변경 예정
+        dao.insert(todoVO);
     }
 
     // 10개의 todoDTO를 반환
@@ -33,7 +53,7 @@ public enum TodoService {
                     TodoDTO dto = new TodoDTO();
                     dto.setTno(tno);
                     dto.setTitle("Todo..title" + tno);
-                    dto.setDueDate(LocalDateTime.now());
+                    dto.setDueDate(LocalDate.now());
                     return dto;
                 })
                 .collect(Collectors.toList());
@@ -43,8 +63,10 @@ public enum TodoService {
         TodoDTO dto = new TodoDTO();
         dto.setTno(tno);
         dto.setTitle("Sample Todo");
-        dto.setDueDate(LocalDateTime.now());
+        dto.setDueDate(LocalDate.now());
         dto.setFinished(false);
         return dto;
     }
+
+
 }
