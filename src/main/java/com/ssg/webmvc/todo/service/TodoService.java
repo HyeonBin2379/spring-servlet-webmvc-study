@@ -60,12 +60,8 @@ public enum TodoService {
                 .collect(Collectors.toList());
     }
 
-    public TodoDTO get(Long tno) {
-        TodoDTO dto = new TodoDTO();
-        dto.setTno(tno);
-        dto.setTitle("Sample Todo");
-        dto.setDueDate(LocalDate.now());
-        dto.setFinished(false);
-        return dto;
+    public TodoDTO get(Long tno) throws Exception {
+        TodoVO todoVO = dao.selectOne(tno);
+        return modelMapper.map(todoVO, TodoDTO.class);
     }
 }

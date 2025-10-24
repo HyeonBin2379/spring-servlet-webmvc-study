@@ -31,7 +31,6 @@ public class TodoListController extends HttpServlet {
         try {
             List<TodoDTO> dtoList = todoService.listAll();
             req.setAttribute("dtoList", dtoList);
-
             req.getRequestDispatcher("/WEB-INF/todo/list.jsp").forward(req, resp);
         } catch (Exception e) {
             // 예외 발생 시 로그 메시지 출력

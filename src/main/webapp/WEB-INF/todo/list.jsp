@@ -16,7 +16,12 @@
     <h1>List Page</h1>
     <ul>
         <c:forEach var="dto" items="${dtoList}">
-          <li>${dto.tno} ${dto.title} ${dto.dueDate} ${dto.finished}</li>
+            <li>
+                <a href="read?tno=${dto.tno}">${dto.tno}</a>
+                ${dto.title}
+                ${dto.dueDate}
+                ${dto.finished}
+            </li>
         </c:forEach>
     </ul>
 </body>

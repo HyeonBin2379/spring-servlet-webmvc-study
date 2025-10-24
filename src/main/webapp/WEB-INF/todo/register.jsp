@@ -13,7 +13,14 @@
 <body>
     <h1>Todo Register Page</h1>
     <form action="/todo/register" method="post">
-        <button type="submit">글 등록 처리</button>
+        <div>
+            <input type="text" name="title" placeholder="INSERT TITLE" required><br/>
+            <input type="date" name="dueDate" required>
+        </div>
+        <div>
+            <button type="reset">RESET</button>
+            <button type="submit">REGISTER</button>
+        </div>
     </form>
 </body>
 </html>

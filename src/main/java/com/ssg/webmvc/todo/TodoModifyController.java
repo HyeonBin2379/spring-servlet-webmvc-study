@@ -14,8 +14,7 @@ public class TodoModifyController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("/todo/modify doGet() 호출: 회원 정보 수정 화면 출력");
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/todo/register.jsp");
-        dispatcher.forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/todo/register.jsp").forward(req, resp);
     }
 
     @Override

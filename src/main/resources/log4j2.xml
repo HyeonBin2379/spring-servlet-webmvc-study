@@ -11,7 +11,7 @@
 
     <!--  로그 레벨별로 로그 메시지를 출력할 방법과 사용할 어펜더를 지정  -->
     <Loggers>
-        <Root level="DEBUG">
+        <Root level="INFO">
             <AppenderRef ref="CONSOLE"/>
         </Root>
     </Loggers>

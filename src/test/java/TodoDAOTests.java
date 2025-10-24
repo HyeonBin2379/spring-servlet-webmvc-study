@@ -1,11 +1,13 @@
 import com.ssg.webmvc.todo.dao.TodoDAO;
 import com.ssg.webmvc.todo.domain.TodoVO;
+import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.util.List;
 
+@Log4j2
 public class TodoDAOTests {
 
     private TodoDAO todoDAO;
@@ -34,13 +36,13 @@ public class TodoDAOTests {
     @Test
     public void testSelectAll() throws Exception {
         List<TodoVO> list = todoDAO.selectAll();
-        list.forEach(System.out::println);
+        list.forEach(log::info);
     }
 
     @Test
     public void testSelectOne() throws Exception {
         TodoVO vo = todoDAO.selectOne(4L);
-        System.out.println(vo);
+        log.info(vo);
     }
 
     @Test
