@@ -42,14 +42,14 @@ public class TodoModifyController extends HttpServlet {
         Long tno = Long.parseLong(req.getParameter("tno"));
         String title = req.getParameter("title");
         LocalDate dueDate = LocalDate.parse(req.getParameter("dueDate"));
-        boolean finished = req.getParameter("finished").equals("true");
+        String finished = req.getParameter("finished");
 
         try {
             TodoDTO todoDTO = TodoDTO.builder()
                     .tno(tno)
                     .title(title)
                     .dueDate(dueDate)
-                    .finished(finished)
+                    .finished(finished != null && finished.equals("on"))
                     .build();
             todoService.update(todoDTO);
             resp.sendRedirect("/todo/list");
