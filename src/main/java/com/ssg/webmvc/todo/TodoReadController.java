@@ -28,7 +28,6 @@ public class TodoReadController extends HttpServlet {
         try {
             Long tno = Long.parseLong(req.getParameter("tno"));
             TodoDTO dto = todoService.get(tno);
-
             req.setAttribute("dto", dto);
             req.getRequestDispatcher("/WEB-INF/todo/read.jsp").forward(req, resp);
         } catch (Exception e) {

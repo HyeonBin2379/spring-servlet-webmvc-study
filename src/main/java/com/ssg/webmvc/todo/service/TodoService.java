@@ -64,4 +64,14 @@ public enum TodoService {
         TodoVO todoVO = dao.selectOne(tno);
         return modelMapper.map(todoVO, TodoDTO.class);
     }
+
+    public void update(TodoDTO todoDTO) throws Exception {
+        TodoVO todoVO = modelMapper.map(todoDTO, TodoVO.class);
+        log.info(todoVO);
+        dao.updateOne(todoVO);
+    }
+
+    public void delete(Long tno) throws Exception {
+        dao.deleteOne(tno);
+    }
 }
